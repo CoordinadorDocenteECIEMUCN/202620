@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Panel Informe Final Seminario Superior 202620</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+ --azul:#092f57; --azul2:#0f6b84; --celeste:#e8f4f8; --dorado:#e7ad21; --fondo:#f4f7fb; --texto:#172033; --muted:#65748b; --linea:#d8e1ee; --card:#fff; --shadow:0 20px 50px rgba(9,47,87,.13); --soft:0 8px 24px rgba(15,23,42,.07);
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at top left,#e8f4f8 0,#f7f9fc 38%,#fff 100%);color:var(--texto);font-family:Inter,system-ui,sans-serif}
+header{background:linear-gradient(135deg,#082847,#0f6b84);color:#fff;padding:30px 34px 26px;box-shadow:0 12px 32px rgba(0,0,0,.22)}
+.header-inner{max-width:1480px;margin:auto;display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:end}
+.brand{display:flex;gap:14px;align-items:center;margin-bottom:12px}
+.logo{width:46px;height:46px;border-radius:16px;background:rgba(255,255,255,.14);display:grid;place-items:center;border:1px solid rgba(255,255,255,.24);font-weight:900;font-family:Barlow;font-size:13px;text-align:center;line-height:1.1}
+h1{font-family:Barlow,sans-serif;font-size:clamp(28px,3.5vw,50px);line-height:.95;margin:0;font-weight:800;letter-spacing:-.035em}
+.subtitle{max-width:850px;color:#d6edf5;margin:12px 0 0;font-size:15px;line-height:1.5}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.kpi{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:18px;padding:13px 12px;backdrop-filter:blur(10px)}
+.kpi strong{display:block;font-family:Barlow;font-size:30px;line-height:1;font-weight:800} .kpi span{font-size:11.5px;color:#d6edf5}
+main{max-width:1480px;margin:auto;padding:24px 26px 50px}
+.control-panel{background:rgba(255,255,255,.92);border:1px solid var(--linea);border-radius:26px;box-shadow:var(--shadow);padding:18px;display:grid;grid-template-columns:1.1fr .8fr .8fr .8fr;gap:12px;position:sticky;top:12px;z-index:10;backdrop-filter:blur(14px)}
+.field label{display:block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:0 0 7px 4px}
+input,select{width:100%;border:1px solid var(--linea);background:#fff;border-radius:15px;padding:13px 14px;font-size:14px;color:var(--texto);outline:none;font-family:inherit}
+input:focus,select:focus{border-color:var(--azul2);box-shadow:0 0 0 3px rgba(15,107,132,.12)}
+button,.btn{border:0;border-radius:15px;padding:13px 15px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;font-size:14px;white-space:nowrap;font-family:inherit}
+.btn-pdf{background:var(--azul);color:white} .btn-eval{background:var(--dorado);color:#221900} .btn-ghost{background:#f1f5f9;color:#22324a}
+.person-summary{margin:20px 0;display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:14px}
+.summary-card{background:#fff;border:1px solid var(--linea);border-radius:24px;padding:18px;box-shadow:var(--soft)}
+.summary-card .label{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.summary-card .value{font-family:Barlow;font-size:34px;font-weight:800;color:var(--azul);line-height:1;margin-top:5px}
+.summary-card .note{color:var(--muted);font-size:13px;margin-top:4px}
+.layout{display:grid;grid-template-columns:460px 1fr;gap:20px;align-items:start}
+.panel-list{background:#fff;border:1px solid var(--linea);border-radius:26px;box-shadow:var(--soft);overflow:hidden}
+.panel-list-head{padding:18px 19px;border-bottom:1px solid var(--linea);display:flex;justify-content:space-between;align-items:center;gap:10px}
+.panel-list-head h2{font-family:Barlow;margin:0;font-size:24px;letter-spacing:-.02em} .count-pill{background:#edf7fa;color:#0d566d;border-radius:999px;padding:7px 10px;font-weight:900;font-size:12px}
+.tabs{display:flex;gap:6px;padding:12px 14px;border-bottom:1px solid var(--linea);background:#f8fafc}
+.tab{flex:1;background:#fff;border:1px solid var(--linea);color:#334155;padding:10px 4px;border-radius:12px;font-size:12.5px;font-weight:700;cursor:pointer}
+.tab.active{background:var(--azul);color:#fff;border-color:var(--azul)}
+.cards{max-height:calc(100vh - 360px);overflow:auto;padding:14px;display:flex;flex-direction:column;gap:12px}
+.card{border:1px solid var(--linea);background:#fff;border-radius:20px;padding:15px;box-shadow:0 5px 16px rgba(15,23,42,.04);transition:.16s ease;cursor:pointer}
+.card:hover{transform:translateY(-1px);box-shadow:var(--soft)} .card.active{border-color:var(--azul2);box-shadow:0 0 0 4px rgba(15,107,132,.12),var(--soft)}
+.card-top{display:flex;justify-content:space-between;gap:10px;margin-bottom:9px;align-items:flex-start}
+.badges{display:flex;gap:6px;flex-wrap:wrap} .badge{font-size:10.5px;text-transform:uppercase;letter-spacing:.045em;font-weight:900;border-radius:999px;padding:6px 8px;background:#eff6ff;color:#155e75} .badge.guia{background:#e8f4f8;color:#0f5368} .badge.eval{background:#fff4d8;color:#805300} .badge.min{background:#eee9fb;color:#4a2f9a}
+.card h3{font-family:Barlow;margin:0 0 8px;font-size:18px;line-height:1.1;letter-spacing:-.01em}
+.meta{font-size:12.8px;color:var(--muted);line-height:1.45}
+.people{display:grid;gap:6px;margin-top:10px;font-size:12.5px}
+.people div{background:#f8fafc;border:1px solid #edf2f7;border-radius:12px;padding:8px}
+.viewer{background:#fff;border:1px solid var(--linea);border-radius:28px;box-shadow:var(--shadow);overflow:hidden;position:sticky;top:118px}
+.viewer-head{padding:20px 22px}
+.viewer-eyebrow{font-size:12px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:var(--azul2);margin-bottom:8px}
+.viewer-title{font-family:Barlow;font-size:27px;font-weight:800;line-height:1.05;margin:0 0 12px;letter-spacing:-.025em}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:14px 0}
+.info{border:1px solid #edf2f7;background:#f8fafc;border-radius:14px;padding:10px 11px;font-size:13px;color:#334155}
+.info b{display:block;color:#0f2742;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
+.comision{margin-top:16px;border:1px solid var(--linea);border-radius:20px;overflow:hidden}
+.comision h4{margin:0;padding:12px 14px;background:var(--celeste);font-family:Barlow;font-size:16px;color:var(--azul)}
+.comision .row{display:grid;grid-template-columns:150px 1fr;gap:10px;padding:11px 14px;border-top:1px solid #edf2f7;font-size:13.5px;align-items:center}
+.comision .row span{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.comision .row.hl{background:#fffbea}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.hint{margin-top:16px;background:#f8fafc;border:1px dashed var(--linea);border-radius:16px;padding:12px 14px;font-size:13px;color:var(--muted);line-height:1.5}
+iframe{width:100%;height:620px;border:0;background:#f8fafc}
+.empty{padding:60px 24px;text-align:center;color:var(--muted)} .empty h3{font-family:Barlow;font-size:28px;margin:0 0 8px;color:#1f2937}
+@media(max-width:1100px){.header-inner,.control-panel,.layout,.person-summary{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}.cards{max-height:none}.viewer{position:relative;top:auto}.comision .row{grid-template-columns:1fr}}
+@media print{header,.control-panel,.tabs,.actions{display:none}main{padding:0}.layout,.person-summary{display:block}.card,.summary-card,.viewer{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="brand"><div class="logo">IF<br>SS</div><div><strong>Informe Final — Seminario Superior</strong><br><span style="color:#d6edf5;font-size:13px">Periodo 202620 · ECIEM · UCN Coquimbo</span></div></div>
+      <h1>Panel centralizado de informes y evaluación</h1>
+      <p class="subtitle">Consulta por rol: identifica los proyectos asociados a cada académico como guía, evaluador o ministro de fe, abre el PDF del informe final y la rúbrica de evaluación.</p>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><strong id="kTrabajos">0</strong><span>trabajos cargados</span></div>
+      <div class="kpi"><strong id="kGuias">0</strong><span>profesores guía</span></div>
+      <div class="kpi"><strong id="kInf">0</strong><span>evaluadores</span></div>
+      <div class="kpi"><strong id="kVisibles">0</strong><span>resultados visibles</span></div>
+    </div>
+  </div>
+</header>
+<main>
+  <section class="control-panel">
+    <div class="field"><label>Académico</label><select id="profesor"><option value="">Todos los académicos</option></select></div>
+    <div class="field"><label>Visualizar rol</label><select id="rol"><option value="todos">Todos los roles</option><option value="guia">Solo como profesor guía</option><option value="evaluador">Solo como evaluador</option><option value="ministro">Solo como ministro de fe</option></select></div>
+    <div class="field"><label>Área</label><select id="area"><option value="">Todas las áreas</option></select></div>
+    <div class="field"><label>Búsqueda</label><input id="q" placeholder="Título, integrantes, carrera..." /></div>
+  </section>
+
+  <section class="person-summary">
+    <div class="summary-card"><div class="label">Académico seleccionado</div><div class="value" id="sNombre" style="font-size:26px">Todos</div><div class="note" id="sNota">Vista general de todos los registros.</div></div>
+    <div class="summary-card"><div class="label">Como profesor guía</div><div class="value" id="sGuia">0</div><div class="note">Trabajos que guía.</div></div>
+    <div class="summary-card"><div class="label">Como evaluador</div><div class="value" id="sInf">0</div><div class="note">Informes a revisar con rúbrica.</div></div>
+    <div class="summary-card"><div class="label">Como ministro de fe</div><div class="value" id="sMin">0</div><div class="note">Defensas en que actúa como ministro.</div></div>
+  </section>
+
+  <section class="layout">
+    <aside class="panel-list">
+      <div class="panel-list-head"><h2>Proyectos</h2><span class="count-pill" id="countText">0 visibles</span></div>
+      <div class="tabs">
+        <button class="tab active" data-tab="todos">Todos</button>
+        <button class="tab" data-tab="guia">Guía</button>
+        <button class="tab" data-tab="evaluador">Evaluador</button>
+        <button class="tab" data-tab="ministro">Ministro</button>
+      </div>
+      <div id="cards" class="cards"></div>
+    </aside>
+    <section class="viewer" id="viewer"></section>
+  </section>
+</main>
+<script>
+// Enlace al archivo PDF de cada proyecto (clave = N° de proyecto). Pegar el enlace del ARCHIVO en Drive.
+// Acepta https://drive.google.com/open?id=ID  o  https://drive.google.com/file/d/ID/view
+const PDF_LINKS = {"1": "https://drive.google.com/open?id=13eIppOpPylYAdl-D8dyjVLp3tZICq0v5", "2": "https://drive.google.com/open?id=11B5MXBYXrD5iCTwUAXCnbJEIaUpLie4M", "3": "https://drive.google.com/open?id=1hnSCIKqw1yg43YgzRauISULJT2UB67XG", "4": "https://drive.google.com/open?id=1iMOkzWrYhxwmSV19Vx_cmHYaebmJCoGh", "5": "https://drive.google.com/open?id=1rlUMxi_Cf6xLR6U1ZodJfRWFaES5JPQq", "6": "https://drive.google.com/open?id=1t31FjCV-687c5jC-cptHLQG-CteOm1PB", "7": "https://drive.google.com/open?id=1BWzaYOk5CjapuGCePPr2HoCaj-hPxt1P", "8": "https://drive.google.com/open?id=1QW3cCja935D_BiJ1mBknxisk5ZM2A96_", "9": "https://drive.google.com/open?id=1fnSK5wxpW2eS6LI1dG7RPB_jisIG2aKK", "10": "https://drive.google.com/open?id=1nafbWfLRdX22rLV6Qydr4yCyueWpcTAf", "11": "https://drive.google.com/open?id=1v5yP-cNXsZW7LaGJ_cr1ULdqe7xoYmx7", "12": "https://drive.google.com/open?id=17ayhLBMKVWFd9y1CrmNTpAzoQn9OTxT-", "13": "https://drive.google.com/open?id=1TBmBQddpJ_A7pGmOpH5X_D_NUa64AHVI", "14": "https://drive.google.com/open?id=1W_3XVps-FOXAsbu-6xsP940ycmAApq3v", "15": "https://drive.google.com/open?id=1nY7wZPDfp685TpcnYw5YpUs1TtLRjOnL", "16": "https://drive.google.com/open?id=1_VW07I2gMiY-hBLxPCg4mTIEiNfMWA62", "17": "https://drive.google.com/open?id=1f_fCh7oNqctUGhLJ3oIlo-3O14dB9yjD", "18": "https://drive.google.com/open?id=1qudIsicyprb1t40mBvJOdvk5jKb2NJok", "19": "https://drive.google.com/open?id=1R4MLvy7de2npkTZk4m9zN2z9YTQBpAYa", "20": "https://drive.google.com/open?id=1FtWpNUqGEY7NdHBfIZc4nKCzs3GXSAs1", "21": "https://drive.google.com/open?id=1aDIZe9NPk9JFjfaXJxhoP538JQB8S5GG", "22": "https://drive.google.com/open?id=1snhWtI7TZ0bd9o1kbBNzdxToKNX4JEfV", "23": "https://drive.google.com/open?id=1Ns_w0P12L2FbLY554ygI9w_N-FN75xp2", "24": "https://drive.google.com/open?id=1CQSrq45CcUj6TPK9DkFceQ0slSXX9xBQ", "25": "https://drive.google.com/open?id=18hTrCey8VvJxNox7EPIC6QMNd8Rx05N-", "26": "https://drive.google.com/open?id=1y9AYWQO9kV3WLzNQ_tIKAHCZNeHoW-X-", "27": "https://drive.google.com/open?id=1DsCGRUp0k8knmh85gTO_p7qyiW9ncKEC", "28": "https://drive.google.com/open?id=1IkeBAZW6HEQJJfVbEHDjuWL7GIuzExEl", "29": "https://drive.google.com/open?id=1Z6fbSzLZMy-9C04xJdn004Y_rzDG1UT3", "30": "https://drive.google.com/open?id=1zvLN4aWgO_W-bQd1_Ubc45LF8ZCQfyTP", "31": "https://drive.google.com/open?id=1rFMuuxOB2NW7mwFDPKO9DdtFrrBJesUy", "32": "https://drive.google.com/open?id=1ULIERIGVh-kom-NJN9SnK86F062Hk9uS", "33": "https://drive.google.com/open?id=1MbTtKERP7nUY5OgNhd1lIeRaLBiGax0n", "34": "https://drive.google.com/open?id=1W45rgueSPIiyydmqqe2ItmxiGu7xq6Jg", "35": "https://drive.google.com/open?id=1oe9wQyYt44cCK_rIqed1Kmzgvt_2Hyx1", "36": "https://drive.google.com/open?id=1rgndyxz7kPTVNku4-40pPG-pg3Kymz6K", "37": "https://drive.google.com/open?id=1NoGf6UR2McdRRWPSk_d4qu7b0eY5RyFA", "38": "https://drive.google.com/open?id=16hA744f5lXI8JiZ4wLwlEK3Z2kveKE9X", "39": "https://drive.google.com/open?id=1_P-Gg7OWgSdxg1RpQfxWoUHRnQapPbep"};
+function driveId(u){const m=String(u||'').match(/[?&]id=([\w-]+)|\/d\/([\w-]+)/);return m?(m[1]||m[2]):null;}
+function pdfUrls(d){const id=driveId(PDF_LINKS[d.id]);return id?{abrir:`https://drive.google.com/file/d/${id}/view`,preview:`https://drive.google.com/file/d/${id}/preview`}:null;}
+const LINK_RUBRICA = "https://forms.gle/pwmNzqD4FmTVHs3u7";
+const DATA = [{"id": 1, "carrera": "Ingeniería Comercial", "area": "Economía", "titulo": "¿Qué distingue a los microemprendimientos con trabajadores asalariados? Origen, escala e informalidad en la Región de Coquimbo\".", "integrantes": "Ávila", "guia": "Fernando González", "ev1": "Andrés Vallone", "ev2": "Karen Vargas", "ministro": "Alberto Rojas"}, {"id": 2, "carrera": "Ingeniería Comercial", "area": "Economía", "titulo": "Determinantes del endeudamiento de los hogares chilenos: evidencia empírica a partir de la Encuesta Financiera de Hogares 2024", "integrantes": "Ardiles, Pastén, Rojas", "guia": "Fernando González", "ev1": "Andrés Vallone", "ev2": "Karen Vargas", "ministro": "Alberto Rojas"}, {"id": 3, "carrera": "Ingeniería Comercial", "area": "Economía", "titulo": "Evaluación del impacto del FOGAES en el acceso al financiamiento hipotecario en Chile", "integrantes": "Saavedra, Vega, Jofré", "guia": "Fernando González", "ev1": "Andrés Vallone", "ev2": "Karen Vargas", "ministro": "Alberto Rojas"}, {"id": 4, "carrera": "Ingeniería Comercial", "area": "Economía", "titulo": "Política Fiscal, Mercado Laboral e Inversión Extranjera Directa en Chile: Un Análisis de Cointegración para el Período 1990–2023", "integrantes": "Rojas, Lisboa, Olivares", "guia": "Fernando González", "ev1": "Karen Vargas", "ev2": "Mauricio Gallardo", "ministro": "Karen Vargas"}, {"id": 5, "carrera": "Ingeniería Comercial", "area": "Economía", "titulo": "Brecha entre proyecciones estimadas y efectivamente recaudadas en Chile: evolución, magnitud y comportamiento en la última década", "integrantes": "Ánjel, Araya, Casanga", "guia": "Fernando González", "ev1": "Karen Vargas", "ev2": "Mauricio Gallardo", "ministro": "Karen Vargas"}, {"id": 6, "carrera": "Ingeniería Comercial", "area": "Emprendimiento", "titulo": "Proponer soluciones que contribuyan a la competitividad y permanencia de emprendimientos de personas con discapacidad visual y motriz, como opción de carrera en la Región de Coquimbo.", "integrantes": "Cárdenas, Núñez, Pérez", "guia": "Karla Soria", "ev1": "Tomás Bas", "ev2": "Sofía Orazi", "ministro": "Yanixza Alfaro"}, {"id": 7, "carrera": "Ingeniería Comercial", "area": "Emprendimiento", "titulo": "Identificar la factibilidad económica, técnica y legal de implementar un emprendimiento basado en sistemas de rastreo vehicular en la ciudad de Coquimbo.", "integrantes": "Alvarado, Sánchez", "guia": "Karla Soria", "ev1": "Tomás Bas", "ev2": "Sergio Zúñiga", "ministro": "Yanixza Alfaro"}, {"id": 8, "carrera": "Ingeniería Comercial", "area": "Emprendimiento", "titulo": "Articulación del ecosistema emprendedor mediante un modelo de hub de innovación: Propuesta para el desarrollo de emprendimientos científico-tecnológicos en la Región de Coquimbo", "integrantes": "Mauad, Moya", "guia": "Karla Soria", "ev1": "Tomás Bas", "ev2": "Sofía Orazi", "ministro": "Yanixza Alfaro"}, {"id": 9, "carrera": "Ingeniería Comercial", "area": "Emprendimiento", "titulo": "Optimización de procesos operativos mediante inteligencia artificial: Un estudio comparativo entre startups y empresas tradicionales en la conurbación La Serena-Coquimbo.", "integrantes": "Cortés, Herrera", "guia": "Karla Soria", "ev1": "Tomás Bas", "ev2": "Sofía Orazi", "ministro": "Yanixza Alfaro"}, {"id": 10, "carrera": "Ingeniería Comercial", "area": "Emprendimiento", "titulo": "Factores Determinantes del Éxito en Emprendimientos establecidos liderados por mujeres: Un Análisis Multidimensional en la Conurbación La Serena - Coquimbo.", "integrantes": "Hidalgo, Monsalve, Ramírez", "guia": "Karla Soria", "ev1": "Sergio Zúñiga", "ev2": "Carla Andrade", "ministro": "Yanixza Alfaro"}, {"id": 11, "carrera": "Ingeniería Comercial", "area": "Finanzas y Evaluación de Proyectos", "titulo": "Factibilidad de un Parque Minero- Industrial en Chungungo, Región de Coquimbo", "integrantes": "Cortes, Jin, Puelles", "guia": "Sergio Zúñiga", "ev1": "Alberto Rojas", "ev2": "Erick De La Barra", "ministro": "Alberto Rojas"}, {"id": 12, "carrera": "Ingeniería Comercial", "area": "Finanzas y Evaluación de Proyectos", "titulo": "FACTIBILIDAD DE UNA FÁBRICA DE ROPA SUSTENTABLE EN BASE A LANA EN LA REGIÓN DE COQUIMBO", "integrantes": "Alfaro, Ordenes, Cabello", "guia": "Sergio Zúñiga", "ev1": "Pablo Rodríguez", "ev2": "Alberto Rojas", "ministro": "Fernando González"}, {"id": 13, "carrera": "Ingeniería Comercial", "area": "Finanzas y Evaluación de Proyectos", "titulo": "Factibilidad económica de la implementación del Sitio 4 del Puerto de Coquimbo", "integrantes": "Fredes, Lavin, Vargas", "guia": "Sergio Zúñiga", "ev1": "Mauricio Gallardo", "ev2": "Erick De La Barra", "ministro": "Alberto Rojas"}, {"id": 14, "carrera": "Ingeniería Comercial", "area": "Finanzas y Evaluación de Proyectos", "titulo": "Factibilidad económica de una empresa de servicios solares fotovoltaicos en Coquimbo", "integrantes": "Luna, Rojo, Valenzuela", "guia": "Sergio Zúñiga", "ev1": "Pablo Rodríguez", "ev2": "Erick De La Barra", "ministro": "Fernando González"}, {"id": 15, "carrera": "Ingeniería Comercial", "area": "Gestión y Estrategias (RSE)", "titulo": "Diseño de un Cuadro de Mando Integral para la alineación estratégica de GoIntegreat: Empresa de soluciones digitales para la minería", "integrantes": "Álvarez, Cortés, Díaz", "guia": "Karen Vargas", "ev1": "Fernando González", "ev2": "Alberto Rojas", "ministro": "Alberto Rojas"}, {"id": 16, "carrera": "Ingeniería Comercial", "area": "Gestión y Estrategias (RSE)", "titulo": "Percepción de greenwashing y su efecto en la confianza e intención de compra en estudiantes UCN", "integrantes": "Barraza, Duque", "guia": "Karen Vargas", "ev1": "Sofía Orazi", "ev2": "Fernando González", "ministro": "Alberto Rojas"}, {"id": 17, "carrera": "Ingeniería Comercial", "area": "Gestión y Estrategias (RSE)", "titulo": "Influencia de la adopción de prácticas ESG en la sostenibilidad de los emprendimientos agroalimentarios: evidencia desde la macrozona norte de Chile", "integrantes": "Galleguillos, Salas, Schuller", "guia": "Karen Vargas", "ev1": "Carla Andrade", "ev2": "Fernando González", "ministro": "Alberto Rojas"}, {"id": 18, "carrera": "Ingeniería Comercial", "area": "Gestión y Estrategias (RSE)", "titulo": "Formulación y evaluación de un proyecto de inversión para la diversificación de servicios y la sustentabilidad financiera del Centro Médico San Lucas", "integrantes": "Guerrero, Huerta, Navarro", "guia": "Karen Vargas", "ev1": "Fernando González", "ev2": "Pablo Rodríguez", "ministro": "Alberto Rojas"}, {"id": 19, "carrera": "Ingeniería Comercial", "area": "Innovación", "titulo": "Anillo de seguridad inteligente para la protección de mujeres: Una síntesis de IoT, IA, privacidad y diseño responsable", "integrantes": "Areyuna, Guerrero", "guia": "Tomás Bas", "ev1": "Erick De La Barra", "ev2": "Boris Bugueño", "ministro": "Boris Bugueño"}, {"id": 20, "carrera": "Ingeniería Comercial", "area": "Innovación", "titulo": "Una propuesta de gestión del excedente alimentario en establecimientos de servicios de alimentos de La Serena", "integrantes": "Contreras, Torres", "guia": "Tomás Bas", "ev1": "Mirza Cequea", "ev2": "Carla Andrade", "ministro": "Mirza Cequea"}, {"id": 21, "carrera": "Ingeniería Comercial", "area": "Innovación", "titulo": "Efectos de la multitarea (multitask) digital sobre el rendimiento, la productividad y el bienestar: una revisión para el diseño de una propuesta de intervención en contextos educativos y organizacionales", "integrantes": "López, Palma", "guia": "Tomás Bas", "ev1": "Natalia Araya", "ev2": "Oswaldo Terán", "ministro": "Mirza Cequea"}, {"id": 22, "carrera": "Ingeniería Comercial", "area": "Innovación", "titulo": "Evaluación de la viabilidad económica y potencial de rentabilidad en la valorización de residuos de langostinos y jibia bajo un enfoque de innovación y economía circular en la industria pesquera", "integrantes": "Araya, Galleguillos", "guia": "Tomás Bas", "ev1": "Alberto Rojas", "ev2": "Carla Andrade", "ministro": "Carla Andrade"}, {"id": 23, "carrera": "Ingeniería Comercial", "area": "Innovación", "titulo": "Propuesta de dispositivo de tamizaje urinario no invasivo en papel para biomarcadores nutricionales y metabólicos", "integrantes": "Merini, Sainz, Tapia", "guia": "Tomás Bas", "ev1": "Pablo Rodríguez", "ev2": "Erick De La Barra", "ministro": "Natalia Araya"}, {"id": 24, "carrera": "Ingeniería Comercial", "area": "Marketing", "titulo": "Ética del marketing financiero en entornos universitarios", "integrantes": "Aracena, Escalona, Reyes", "guia": "Sofía Orazi", "ev1": "Carla Andrade", "ev2": "Rodrigo Sfeir", "ministro": "Carla Andrade"}, {"id": 25, "carrera": "Ingeniería Comercial", "area": "Marketing", "titulo": "Factores que influyen en la intención de elección de la Región de Coquimbo como locación de rodaje por parte de productoras audiovisuales chilenas.", "integrantes": "Collao, Castillo", "guia": "Sofía Orazi", "ev1": "Carla Andrade", "ev2": "Rodrigo Sfeir", "ministro": "Carla Andrade"}, {"id": 26, "carrera": "Ingeniería Comercial", "area": "Marketing", "titulo": "FACTORES QUE INFLUYEN EN LA ADOPCIÓN DE SERVICIOS DE RECICLAJE DOMICILIARIO POR PARTE DE LOS HOGARES DE LA REGIÓN DE COQUIMBO", "integrantes": "Fajardo, Perez, Ramirez", "guia": "Sofía Orazi", "ev1": "Carla Andrade", "ev2": "Erick De La Barra", "ministro": "Carla Andrade"}, {"id": 27, "carrera": "Ingeniería Comercial", "area": "Marketing", "titulo": "Análisis integral del impacto del Electronic Word of Mouth (eWOM) en la intención de reserva hotelera: Un estudio multidimensional en la Región de Coquimbo", "integrantes": "Aguirre, Toro, Videla", "guia": "Sofía Orazi", "ev1": "Carla Andrade", "ev2": "Erick De La Barra", "ministro": "Carla Andrade"}, {"id": 28, "carrera": "Ingeniería en Información y Control de Gestión", "area": "Planificación y Control de Gestión", "titulo": "El capital humano como factor clave para los procesos de transformación digital: Una revisión sistemática del 2015-2025", "integrantes": "Delgado, González, Vega", "guia": "Mirza Cequea", "ev1": "Oswaldo Terán", "ev2": "Vannessa Duarte", "ministro": "Yanixza Alfaro"}, {"id": 29, "carrera": "Ingeniería en Información y Control de Gestión", "area": "Planificación y Control de Gestión", "titulo": "FACTORES CRÍTICOS DE ÉXITO EN LA IMPLEMENTACIÓN DE SISTEMAS ERP EN GRANDES EMPRESAS DE EUROPA Y LATINOAMÉRICA: REVISIÓN SISTEMÁTICA DE LA LITERATURA (2018–2026)", "integrantes": "Díaz, Zambra, Zárate", "guia": "Mirza Cequea", "ev1": "Oswaldo Terán", "ev2": "Natalia Araya", "ministro": "Yanixza Alfaro"}, {"id": 30, "carrera": "Ingeniería en Información y Control de Gestión", "area": "Planificación y Control de Gestión", "titulo": "Estereotipos de género y percepción del liderazgo en equipos de trabajo organizacionales: un estudio cualitativo en 2026", "integrantes": "Carvajal, Lujan, Paredes", "guia": "Mirza Cequea", "ev1": "Oswaldo Terán", "ev2": "Karla Soria", "ministro": "Yanixza Alfaro"}, {"id": 31, "carrera": "Ingeniería en Información y Control de Gestión", "area": "Planificación y Control de Gestión", "titulo": "Estrategias frente al estrés hídrico en la minería: prácticas globales y su implementación en el norte de Chile mediante una revisión sistemática durante el periodo 2010-2025", "integrantes": "Bugueño, Hurtado, Miranda", "guia": "Mirza Cequea", "ev1": "Oswaldo Terán", "ev2": "Sergio Zúñiga", "ministro": "Yanixza Alfaro"}, {"id": 32, "carrera": "Ingeniería en Información y Control de Gestión", "area": "Planificación y Control de Gestión", "titulo": "Propuesta de mejora del sistema de control de gestión de Recon Drilling Chile SPA", "integrantes": "Cisternas, León, Serrano", "guia": "Oswaldo Terán", "ev1": "Mirza Cequea", "ev2": "Vannessa Duarte", "ministro": "Yanixza Alfaro"}, {"id": 33, "carrera": "Ingeniería en Información y Control de Gestión", "area": "Planificación y Control de Gestión", "titulo": "DISEÑO DE PLAN DE CONTROL DE GESTIÓN PARA TRANSPORTES CALLEGARI", "integrantes": "Moreno, Chávez, Estévez", "guia": "Oswaldo Terán", "ev1": "Mirza Cequea", "ev2": "Vannessa Duarte", "ministro": "Yanixza Alfaro"}, {"id": 34, "carrera": "Ingeniería en Información y Control de Gestión", "area": "Planificación y Control de Gestión", "titulo": "DISEÑO DE UN PLAN DE CONTROL DE GESTIÓN PARA FARMACIAS DR. AMIGO: HACIA UNA GESTIÓN OPERATIVA EFICIENTE EN UNA CADENA FARMACÉUTICA INDEPENDIENTE EN CRECIMIENTO", "integrantes": "Caimanque, Contreras, Lizardi", "guia": "Oswaldo Terán", "ev1": "Mirza Cequea", "ev2": "Vannessa Duarte", "ministro": "Yanixza Alfaro"}, {"id": 35, "carrera": "Ingeniería en Información y Control de Gestión", "area": "Sistemas de Información", "titulo": "Modelo de Inteligencia de Negocios para la unificación de la trazabilidad operativa-financiera en FyC Chile", "integrantes": "Galleguillos, Rodríguez, Talamilla", "guia": "Vannessa Duarte", "ev1": "John Fernández", "ev2": "Natalia Araya", "ministro": "Natalia Araya"}, {"id": 36, "carrera": "Ingeniería en Información y Control de Gestión", "area": "Sistemas de Información", "titulo": "MODELO DE INTEGRACIÓN DE DATOS DE BUSINESS INTELLIGENCE PARA LA GESTIÓN OPERATIVA Y LA TOMA DE DECISIONES EN LA EMPRESA MAAS ECOLOGÍA", "integrantes": "Albasini, Gallardo, Quinceno", "guia": "Vannessa Duarte", "ev1": "Yahima Hadfeg", "ev2": "Boris Bugueño", "ministro": "Natalia Araya"}, {"id": 37, "carrera": "Ingeniería en Información y Control de Gestión", "area": "Sistemas de Información", "titulo": "Modelo de integración de datos de Business Intelligence para la unificación de las áreas de costos, taller y operaciones: Caso Transportes Callegari", "integrantes": "Alcaman, Calfupan", "guia": "Vannessa Duarte", "ev1": "Cristian Suarez", "ev2": "Boris Bugueño", "ministro": "Natalia Araya"}, {"id": 38, "carrera": "Ingeniería en Información y Control de Gestión", "area": "Sistemas de Información", "titulo": "Evaluación de la incidencia de los estilos de vida en las manifestaciones del climaterio: Bases para un modelo de recomendaciones institucionales en la UCN Coquimbo", "integrantes": "Martínez, Zambra", "guia": "Vannessa Duarte", "ev1": "Carolina Naranjo", "ev2": "Natalia Araya", "ministro": "Natalia Araya"}, {"id": 39, "carrera": "Ingeniería en Información y Control de Gestión", "area": "Sistemas de Información", "titulo": "Modelo Basado en Reglas de Asociación y Lenguaje Natural Para la Evaluación de la Pertinencia Curricular en Carreras de Ingeniería: Un Análisis de Brechas en el Sector Minero", "integrantes": "Bascuñan, Camus, Monterrey", "guia": "Vannessa Duarte", "ev1": "Nelson Carrión", "ev2": "Rodrigo Sfeir", "ministro": "Natalia Araya"}];
+
+const allNames = new Set();
+DATA.forEach(d => [d.guia,d.ev1,d.ev2,d.ministro].forEach(n=>n&&allNames.add(n)));
+const ACADEMICOS = [...allNames].sort((a,b)=>a.localeCompare(b,'es'));
+const AREAS = [...new Set(DATA.map(d=>d.area))].sort((a,b)=>a.localeCompare(b,'es'));
+const LABEL = {guia:'Guía', evaluador:'Evaluador', ministro:'Ministro de fe'};
+const CLS = {guia:'guia', evaluador:'eval', ministro:'min'};
+
+let selectedId=null, tab='todos';
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+function rolesFor(d,name){
+  if(!name) return [];
+  const r=[];
+  if(d.guia===name) r.push('guia');
+  if(d.ev1===name || d.ev2===name) r.push('evaluador');
+  if(d.ministro===name) r.push('ministro');
+  return r;
+}
+function fillSelects(){
+  ACADEMICOS.forEach(n=>{const o=document.createElement('option');o.value=n;o.textContent=n;$('profesor').appendChild(o);});
+  AREAS.forEach(n=>{const o=document.createElement('option');o.value=n;o.textContent=n;$('area').appendChild(o);});
+  $('kTrabajos').textContent=DATA.length;
+  $('kGuias').textContent=new Set(DATA.map(d=>d.guia)).size;
+  $('kInf').textContent=new Set(DATA.flatMap(d=>[d.ev1,d.ev2])).size;
+}
+function filtered(){
+  const name=$('profesor').value, rol=$('rol').value, area=$('area').value, q=$('q').value.toLowerCase().trim();
+  return DATA.filter(d=>{
+    const roles=rolesFor(d,name);
+    if(name && !roles.length) return false;
+    if(rol!=='todos'){
+      if(name){ if(!roles.includes(rol)) return false; }
+      else if(rol==='guia' && !d.guia) return false;
+    }
+    if(area && d.area!==area) return false;
+    if(q){const hay=[d.titulo,d.integrantes,d.carrera,d.area,d.guia,d.ev1,d.ev2,d.ministro].join(' ').toLowerCase(); if(!hay.includes(q)) return false;}
+    return true;
+  });
+}
+function updateSummary(list){
+  const name=$('profesor').value;
+  const c=r=>DATA.filter(d=>rolesFor(d,name).includes(r)).length;
+  $('sNombre').textContent=name||'Todos';
+  $('sNota').textContent=name?'Responsabilidades de este académico en las defensas.':'Vista general de todos los registros.';
+  $('sGuia').textContent=name?c('guia'):new Set(DATA.map(d=>d.guia)).size;
+  $('sInf').textContent=name?c('evaluador'):DATA.length*2;
+  $('sMin').textContent=name?c('ministro'):DATA.length;
+  $('kVisibles').textContent=list.length;
+  $('countText').textContent=`${list.length} visibles`;
+}
+function renderCards(){
+  const list=filtered(); updateSummary(list);
+  const name=$('profesor').value, box=$('cards'); box.innerHTML='';
+  if(!list.length){box.innerHTML='<div class="empty"><h3>Sin resultados</h3><p>Ajusta el académico, rol, área o búsqueda.</p></div>'; renderEmpty(); return;}
+  if(selectedId && !list.some(d=>d.id===selectedId)){selectedId=null; renderEmpty();}
+  list.forEach(d=>{
+    const roles=rolesFor(d,name);
+    const badges=name?roles.map(r=>`<span class="badge ${CLS[r]}">${LABEL[r]}</span>`).join(''):`<span class="badge guia">Guía: ${esc(d.guia)}</span>`;
+    const card=document.createElement('article'); card.className='card'+(d.id===selectedId?' active':'');
+    card.onclick=()=>{selectedId=d.id; renderViewer(d); renderCards();};
+    card.innerHTML=`<div class="card-top"><div class="badges">${badges}</div><span class="badge">#${d.id}</span></div><h3>${esc(d.titulo)}</h3><div class="meta"><b>${esc(d.area)}</b><br>${esc(d.carrera)}</div><div class="people"><div><b>Integrantes:</b> ${esc(d.integrantes)}</div><div><b>Evaluadores:</b> ${esc(d.ev1)} · ${esc(d.ev2)}</div><div><b>Ministro/a de fe:</b> ${esc(d.ministro)}</div></div>`;
+    box.appendChild(card);
+  });
+}
+function renderEmpty(){
+  $('viewer').innerHTML='<div class="empty"><h3>Selecciona un proyecto</h3><p>Al elegir una tarjeta se mostrará aquí la ficha completa, la comisión de defensa y el PDF del informe y el acceso a la rúbrica de evaluación.</p><div class="actions" style="justify-content:center"><a class="btn btn-eval" href="'+LINK_RUBRICA+'" target="_blank" rel="noopener">📋 Rúbrica de evaluación</a></div></div>';
+}
+function renderViewer(d){
+  const name=$('profesor').value, roles=rolesFor(d,name), u=pdfUrls(d);
+  const hl=(n,extra)=>`class="row${name&&n===name?' hl':''}"`;
+  $('viewer').innerHTML=`<div class="viewer-head">
+    <div class="viewer-eyebrow">Informe Final · Seminario Superior 202620 · Proyecto #${d.id}</div>
+    <h2 class="viewer-title">${esc(d.titulo)}</h2>
+    <div class="info-grid">
+      <div class="info"><b>Área</b>${esc(d.area)}</div>
+      <div class="info"><b>Carrera</b>${esc(d.carrera)}</div>
+      <div class="info" style="grid-column:1/-1"><b>Seminaristas</b>${esc(d.integrantes)}</div>
+    </div>
+    <div class="comision">
+      <h4>Comisión de defensa</h4>
+      <div ${hl(d.guia)}><span>Profesor/a guía</span><strong>${esc(d.guia)}</strong></div>
+      <div ${hl(d.ev1)}><span>Evaluador/a 1</span><strong>${esc(d.ev1)}</strong></div>
+      <div ${hl(d.ev2)}><span>Evaluador/a 2</span><strong>${esc(d.ev2)}</strong></div>
+      <div ${hl(d.ministro)}><span>Ministro/a de fe</span><strong>${esc(d.ministro)}</strong></div>
+    </div>
+    <div class="actions">
+      ${u?`<a class="btn btn-pdf" href="${u.abrir}" target="_blank" rel="noopener">📄 Abrir PDF</a>`:`<button class="btn btn-ghost" disabled style="opacity:.6;cursor:not-allowed">📄 PDF sin enlace cargado</button>`}
+      <a class="btn btn-eval" href="${LINK_RUBRICA}" target="_blank" rel="noopener">📋 Evaluar con rúbrica</a>
+      <button class="btn btn-ghost" onclick="window.print()">🖨 Imprimir</button>
+    </div>
+
+  </div>
+  ${u?`<iframe src="${u.preview}" title="Vista previa Informe Final"></iframe>`:""}`;
+}
+function syncTabs(){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{tab=b.dataset.tab;$('rol').value=tab;syncTabs();renderCards();}));
+['profesor','rol','area','q'].forEach(id=>$(id).addEventListener('input',()=>{
+  if(id==='rol'){tab=$('rol').value;syncTabs();}
+  renderCards();
+}));
+fillSelects(); renderCards(); renderEmpty();
+</script>
+</body>
+</html>
